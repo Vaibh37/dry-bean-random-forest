@@ -4,7 +4,12 @@ import joblib
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    ConfusionMatrixDisplay
+)
 
 df = pd.read_excel("Dry_Bean_Dataset.xlsx")
 df = df.drop_duplicates()
@@ -65,7 +70,13 @@ y_pred = best_model.predict(X_test)
 
 print("Final training accuracy:", best_model.score(X_train, y_train))
 print("Final test accuracy:", accuracy_score(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+
+report = classification_report(y_test, y_pred)
+
+print(report)
+
+with open("classification_report.txt", "w", encoding="utf-8") as file:
+    file.write(report)
 
 cm = confusion_matrix(y_test, y_pred)
 
@@ -77,7 +88,9 @@ display = ConfusionMatrixDisplay(
 display.plot(cmap="Blues")
 plt.xticks(rotation=45, ha="right")
 plt.tight_layout()
+plt.savefig("confusion_matrix.png", dpi=300, bbox_inches="tight")
 plt.show()
+plt.close()
 
 importance = pd.Series(
     best_model.feature_importances_,
@@ -92,6 +105,10 @@ plt.xlabel("Feature Importance Score")
 plt.ylabel("Bean Features")
 plt.title("Random Forest Feature Importance")
 plt.tight_layout()
+plt.savefig("feature_importance.png", dpi=300, bbox_inches="tight")
 plt.show()
+plt.close()
 
 joblib.dump(best_model, "random_forest_model.joblib")
+
+print("Evaluation files and model saved successfully!")
