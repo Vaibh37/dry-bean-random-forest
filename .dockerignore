@@ -1,0 +1,7 @@
+.git
+__pycache__
+*.pyc
+.venv
+.ipynb_checkpoints
+Dry_Bean_Dataset.xlsx
+main.py

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dry Bean Classifier</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="brand">Dry Bean Classifier</a>
+            <a href="/docs" class="docs">API Documentation</a>
+        </header>
+
+        <main>
+            <div class="intro">
+                <h1>Dry Bean Classification</h1>
+                <p>Predict one of seven dry bean varieties using 16 numerical features and a Random Forest model.</p>
+            </div>
+
+            {% if error %}
+            <div class="error" role="alert">{{ error }}</div>
+            {% endif %}
+
+            {% if prediction %}
+            <div class="result">
+                <span>Predicted class</span>
+                <strong>{{ prediction }}</strong>
+            </div>
+            {% endif %}
+
+            <form action="/classify" method="post">
+                {% for group in groups %}
+                <section class="group">
+                    <h2>{{ group.title }}</h2>
+                    <p>{{ group.description }}</p>
+
+                    <div class="fields">
+                        {% for field in group.fields %}
+                        <div class="field">
+                            <label for="{{ field.name }}">{{ field.label }}</label>
+                            <input
+                                type="number"
+                                step="any"
+                                id="{{ field.name }}"
+                                name="{{ field.name }}"
+                                value="{{ values.get(field.name, '') }}"
+                                required
+                            >
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endfor %}
+
+                <div class="actions">
+                    <p>All 16 measurements are required.</p>
+                    <button type="submit">Predict Class</button>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            Random Forest · scikit-learn · FastAPI
+        </footer>
+    </div>
+</body>
+</html>

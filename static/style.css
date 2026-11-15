@@ -1,0 +1,199 @@
+
+:root {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #090909;
+    color: #f5f5f5;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1120px;
+    margin: auto;
+    padding: 0 24px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #303030;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.docs {
+    color: #bdbdbd;
+    font-size: 14px;
+}
+
+.docs:hover {
+    color: white;
+}
+
+.intro {
+    padding: 32px 0 24px;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.intro p,
+.group p,
+.actions p {
+    color: #a6a6a6;
+    margin: 0;
+    font-size: 14px;
+}
+
+form {
+    border: 1px solid #333;
+    border-radius: 7px;
+    padding: 0 24px;
+    background: #111;
+}
+
+.group {
+    padding: 22px 0;
+    border-bottom: 1px solid #303030;
+}
+
+h2 {
+    margin: 0 0 3px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 19px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+input {
+    width: 100%;
+    padding: 11px 12px;
+    background: #090909;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    font: inherit;
+    outline: none;
+}
+
+input:focus {
+    border-color: white;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+}
+
+button {
+    padding: 11px 25px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #dedede;
+}
+
+.result,
+.error {
+    padding: 17px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background: #151515;
+}
+
+.result span {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.result strong {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+footer {
+    padding: 24px 0;
+    color: #888;
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    .fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    form {
+        padding: 0 16px;
+    }
+
+    .fields {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+}
